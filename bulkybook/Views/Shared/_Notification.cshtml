@@ -1,0 +1,29 @@
+﻿<!--to put tempData on view -->
+@if (TempData["success"]!=null)
+{
+    <!--use toastr alerts and must use jquery file -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!----End of use toastr alerts -->
+
+    <!--now you can use and call use toastr alerts -->
+    <script type="text/javascript">
+    toastr.success('@TempData["success"]');
+    </script>
+    <!--End of use it -->
+}
+<!--to put tempData on view do error -->
+@if (TempData["Error"]!=null)
+{
+        <!--use toastr alerts and must use jquery file -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!----End of use toastr alerts -->
+
+     <!--now you can use and call use toastr alerts -->
+    <script type="text/javascript">
+    toastr.error('@TempData["Error"]');
+    </script>
+    <!--End of use it -->
+    
+}

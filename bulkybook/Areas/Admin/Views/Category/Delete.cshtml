@@ -1,0 +1,39 @@
+﻿
+@model Category
+
+<!--create form--> 
+<!--chane Name of action on controller to delete use [HttpPost,ActionName("Delete")]--> 
+<form method="post" asp-action="Delete">
+    <!-- to not send id = null use input hide -->
+    <input asp-for="Id" hidden />
+    <!-- end -->
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary"> Delete Category </h2>
+            <hr />
+        </div>
+        <!--put to waring felid on div title>
+        @*<div asp-validation-summary="All"></div>*@
+        <!--fore the felid and label Name-->  
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" disabled class="form-control" />
+            <!-- عمل تحذير الحقول  -->
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        @*//end *@
+         <div class="mb-3">
+            <label asp-for="DisplayOrder"></label>
+            <input asp-for="DisplayOrder" disabled class="form-control" />
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn-danger" style="width:150px">Delete</button>
+        <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:140px">
+            Back to List
+        </a>
+    </div>
+</form>
+
+@section scripts {
+<partial name="_ValidationScriptsPartial" />
+}

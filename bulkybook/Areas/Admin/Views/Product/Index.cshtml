@@ -1,0 +1,44 @@
+﻿
+
+<!--call  tempData from _Notification on partial View -->
+
+<!-- you must use this file from _layout to use on all views -->
+@*<partial name="_Notification" />*@
+<!--End-->
+
+@*how to title fore the table *@
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Product List</h2>
+        </div>
+        <div class="col-6 text-end">
+          <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
+          @*how to write icon from bootstrap *@
+          <i class="bi bi-plus-circle-dotted"></i> &nbsp; Create New Product
+          </a>
+        </div>
+    </div>
+</div>
+<br /> <br />
+   @*this end of title*@
+<table id="tblData" class="table table-border table-striped" style="width:100%">
+    <thead>
+        <tr>
+        <th>Title</th>
+        <th>ISBN</th>
+        <th>Price</th>
+@*        <th>Author</th>
+        <th>Category</th>*@
+        
+        </tr>
+    </thead>
+    <tbody>
+       
+    </tbody>
+</table>
+</div>
+
+@section scripts{
+    <script src="~/js/product.js"></script>
+}

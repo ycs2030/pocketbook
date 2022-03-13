@@ -1,0 +1,133 @@
+﻿@model BulkyBook.Model.ViewModels.ProductVM
+
+
+@*create form *@ <!--enctype= this fore make upload work -->
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <div class="border p-3 mt-4 row" >
+        <div class="row pb-2">
+            <!--this fore make alarte-->
+            <h2 class="text-primary">@(Model.Product.Id!=0?"Update":"Create") Product </h2>
+            <hr />
+        </div>
+        <!--put to waring felid on div title>
+        @*<div asp-validation-summary="All"></div>*@
+        <!--fore the felid and label Name-->  
+        <div class="mb-3">
+            <label asp-for="Product.Title"></label>
+            <input asp-for="Product.Title" class="form-control" />
+            <!-- عمل تحذير الحقول  -->
+            <span asp-validation-for="Product.Title" class="text-danger"></span>
+        </div>
+        @*//end *@
+                <div class="mb-3">
+            <label asp-for="Product.Description"></label>
+            <textarea asp-for="Product.Description" row="3" class="form-control"></textarea>
+            <!-- عمل تحذير الحقول  -->
+            <span asp-validation-for="Product.Description" class="text-danger"></span>
+        </div>
+        @*//end *@
+                <div class="mb-3 col-6">
+            <label asp-for="Product.ISBN"></label>
+            <input asp-for="Product.ISBN" class="form-control" />
+            <!-- عمل تحذير الحقول  -->
+            <span asp-validation-for="Product.ISBN" class="text-danger"></span>
+        </div>
+        @*//end *@
+                <div class="mb-3 col-6">
+            <label asp-for="Product.Author"></label>
+            <input asp-for="Product.Author" class="form-control" />
+            <!-- عمل تحذير الحقول  -->
+            <span asp-validation-for="Product.Author" class="text-danger"></span>
+        </div>
+        @*//end *@
+                <div class="mb-3 col-6">
+            <label asp-for="Product.ListPrice"></label>
+            <input asp-for="Product.ListPrice" class="form-control" />
+            <!-- عمل تحذير الحقول  -->
+            <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+        </div>
+        @*//end *@
+                <div class="mb-3 col-6">
+            <label asp-for="Product.Price"></label>
+            <input asp-for="Product.Price" class="form-control" />
+            <!-- عمل تحذير الحقول  -->
+            <span asp-validation-for="Product.Price" class="text-danger"></span>
+        </div>
+        @*//end *@
+               <div class="mb-3 col-6">
+            <label asp-for="Product.Price50"></label>
+            <input asp-for="Product.Price50" class="form-control" />
+            <!-- عمل تحذير الحقول  -->
+            <span asp-validation-for="Product.Price50" class="text-danger"></span>
+        </div>
+        @*//end *@
+               <div class="mb-3 col-6">
+            <label asp-for="Product.Price100"></label>
+            <input asp-for="Product.Price100" class="form-control" />
+            <!-- عمل تحذير الحقول  -->
+            <span asp-validation-for="Product.Price100" class="text-danger"></span>
+        </div>
+        @*//end *@
+           <div class="mb-3 ">
+            <label asp-for="Product.ImageUrl"></label>
+            <input type="file"  id="uploadBox" name="file" class="form-control" />
+            <!-- عمل تحذير الحقول  -->
+           @* <span asp-validation-for="Product.ImageUrl" class="text-danger"></span>*@
+        </div>
+        @*//end *@
+          <!--this for  get data from viewBag-->
+           <div class="mb-3 col-6">
+            <label asp-for="Product.CategoryId"></label>
+            <!--this select from table -->
+            <select asp-for="Product.CategoryId"  asp-items="@Model.CatagoryList" name="Product.Categoy" class="form-select">
+                <option disabled selected>--Select Category--</option>
+            </select>
+            <!-- عمل تحذير الحقول  -->
+            <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+        </div>
+        @*//end *@
+        <div class="mb-3 col-6">
+           <label asp-for="Product.CoverTypeId"></label>
+            <!--this select from table from view Data -->
+            <select asp-for="Product.CoverTypeId" asp-items="@Model.CoverTypeList" name="CoverTypeList" class="form-select">
+                <option disabled selected>--Select CoverType--</option>
+            </select>
+            <!-- عمل تحذير الحقول  -->
+            <span asp-validation-for="Product.CoverTypeId" class="text-danger"></span>
+        </div>
+        @*//end *@
+       <div class="col-12">
+           @if(Model.Product.Id!=0){
+                <button type="submit" class="btn-primary" style="width:150px">Update</button>
+            }else
+            {
+               <button type="submit"onclick="return validateInput()" class="btn-primary" style="width:150px">Create</button>
+            }
+            <a asp-controller="Product" asp-action="Index" disabled class="btn btn-secondary" style="width:140px">
+            Back to List
+        </a>
+        </div>
+    </div>
+</form>
+
+@section scripts {
+<partial name="_ValidationScriptsPartial" />
+}
+<script>
+
+    function validateInput()
+    {   
+        if(document.getElementById("uploadBox").value=="")
+         {
+           Swal.fire({
+                     icon: 'error',
+                      title: 'Oops...',
+                        text: 'Please upload an Image!...',
+            
+})
+            return false;
+         }
+             return true;
+    }
+     
+</script>
